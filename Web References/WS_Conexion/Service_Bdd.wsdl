@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="192.168.100.84" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="192.168.100.84" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="192.168.100.84">
+      <s:element name="numeroPedido">
+        <s:complexType />
+      </s:element>
+      <s:element name="numeroPedidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="numeroPedidoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidarUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contrasena" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="rolcodigo" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidarUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidarUsuarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaProducto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="idcategoria" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaProductoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaProductoResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BusquedaDocumento">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigoPedido" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BusquedaDocumentoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BusquedaDocumentoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegistroPedido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigoPedido" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="producto" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="unidades" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="cliente" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegistroPedidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistroPedidoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaCategoria">
+        <s:complexType />
+      </s:element>
+      <s:element name="ConsultaCategoriaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaCategoriaResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TotalPedido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigoPedido" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TotalPedidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TotalPedidoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EstadoPedido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigoPedido" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="opcion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EstadoPedidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EstadoPedidoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BusquedaClienteMovil">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cedula" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BusquedaClienteMovilResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BusquedaClienteMovilResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TiempoEspera">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pedido" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TiempoEsperaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TiempoEsperaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarProducto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigoPedido" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="producto" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="unidades" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarProductoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EliminarProductoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="guardarActualizarCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tipoBusqueda" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="codigoCliente" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombreCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="apellidoCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cedulaCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="correoCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="direccionCliente" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="codigoEstado" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="guardarActualizarClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="guardarActualizarClienteResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="numeroPedidoSoapIn">
+    <wsdl:part name="parameters" element="tns:numeroPedido" />
+  </wsdl:message>
+  <wsdl:message name="numeroPedidoSoapOut">
+    <wsdl:part name="parameters" element="tns:numeroPedidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidarUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="ValidarUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaProducto" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="BusquedaDocumentoSoapIn">
+    <wsdl:part name="parameters" element="tns:BusquedaDocumento" />
+  </wsdl:message>
+  <wsdl:message name="BusquedaDocumentoSoapOut">
+    <wsdl:part name="parameters" element="tns:BusquedaDocumentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegistroPedidoSoapIn">
+    <wsdl:part name="parameters" element="tns:RegistroPedido" />
+  </wsdl:message>
+  <wsdl:message name="RegistroPedidoSoapOut">
+    <wsdl:part name="parameters" element="tns:RegistroPedidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaCategoriaSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaCategoria" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaCategoriaSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaCategoriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="TotalPedidoSoapIn">
+    <wsdl:part name="parameters" element="tns:TotalPedido" />
+  </wsdl:message>
+  <wsdl:message name="TotalPedidoSoapOut">
+    <wsdl:part name="parameters" element="tns:TotalPedidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EstadoPedidoSoapIn">
+    <wsdl:part name="parameters" element="tns:EstadoPedido" />
+  </wsdl:message>
+  <wsdl:message name="EstadoPedidoSoapOut">
+    <wsdl:part name="parameters" element="tns:EstadoPedidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="BusquedaClienteMovilSoapIn">
+    <wsdl:part name="parameters" element="tns:BusquedaClienteMovil" />
+  </wsdl:message>
+  <wsdl:message name="BusquedaClienteMovilSoapOut">
+    <wsdl:part name="parameters" element="tns:BusquedaClienteMovilResponse" />
+  </wsdl:message>
+  <wsdl:message name="TiempoEsperaSoapIn">
+    <wsdl:part name="parameters" element="tns:TiempoEspera" />
+  </wsdl:message>
+  <wsdl:message name="TiempoEsperaSoapOut">
+    <wsdl:part name="parameters" element="tns:TiempoEsperaResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminarProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminarProducto" />
+  </wsdl:message>
+  <wsdl:message name="EliminarProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminarProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="guardarActualizarClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:guardarActualizarCliente" />
+  </wsdl:message>
+  <wsdl:message name="guardarActualizarClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:guardarActualizarClienteResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Service_BddSoap">
+    <wsdl:operation name="numeroPedido">
+      <wsdl:input message="tns:numeroPedidoSoapIn" />
+      <wsdl:output message="tns:numeroPedidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidarUsuario">
+      <wsdl:input message="tns:ValidarUsuarioSoapIn" />
+      <wsdl:output message="tns:ValidarUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaProducto">
+      <wsdl:input message="tns:ConsultaProductoSoapIn" />
+      <wsdl:output message="tns:ConsultaProductoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BusquedaDocumento">
+      <wsdl:input message="tns:BusquedaDocumentoSoapIn" />
+      <wsdl:output message="tns:BusquedaDocumentoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistroPedido">
+      <wsdl:input message="tns:RegistroPedidoSoapIn" />
+      <wsdl:output message="tns:RegistroPedidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaCategoria">
+      <wsdl:input message="tns:ConsultaCategoriaSoapIn" />
+      <wsdl:output message="tns:ConsultaCategoriaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TotalPedido">
+      <wsdl:input message="tns:TotalPedidoSoapIn" />
+      <wsdl:output message="tns:TotalPedidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EstadoPedido">
+      <wsdl:input message="tns:EstadoPedidoSoapIn" />
+      <wsdl:output message="tns:EstadoPedidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BusquedaClienteMovil">
+      <wsdl:input message="tns:BusquedaClienteMovilSoapIn" />
+      <wsdl:output message="tns:BusquedaClienteMovilSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TiempoEspera">
+      <wsdl:input message="tns:TiempoEsperaSoapIn" />
+      <wsdl:output message="tns:TiempoEsperaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarProducto">
+      <wsdl:input message="tns:EliminarProductoSoapIn" />
+      <wsdl:output message="tns:EliminarProductoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="guardarActualizarCliente">
+      <wsdl:input message="tns:guardarActualizarClienteSoapIn" />
+      <wsdl:output message="tns:guardarActualizarClienteSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service_BddSoap" type="tns:Service_BddSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="numeroPedido">
+      <soap:operation soapAction="192.168.100.84/numeroPedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidarUsuario">
+      <soap:operation soapAction="192.168.100.84/ValidarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaProducto">
+      <soap:operation soapAction="192.168.100.84/ConsultaProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BusquedaDocumento">
+      <soap:operation soapAction="192.168.100.84/BusquedaDocumento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistroPedido">
+      <soap:operation soapAction="192.168.100.84/RegistroPedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaCategoria">
+      <soap:operation soapAction="192.168.100.84/ConsultaCategoria" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TotalPedido">
+      <soap:operation soapAction="192.168.100.84/TotalPedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EstadoPedido">
+      <soap:operation soapAction="192.168.100.84/EstadoPedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BusquedaClienteMovil">
+      <soap:operation soapAction="192.168.100.84/BusquedaClienteMovil" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TiempoEspera">
+      <soap:operation soapAction="192.168.100.84/TiempoEspera" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarProducto">
+      <soap:operation soapAction="192.168.100.84/EliminarProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="guardarActualizarCliente">
+      <soap:operation soapAction="192.168.100.84/guardarActualizarCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service_Bdd">
+    <wsdl:port name="Service_BddSoap" binding="tns:Service_BddSoap">
+      <soap:address location="http://192.168.100.84/Servicio%20Web/Service_Bdd.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
